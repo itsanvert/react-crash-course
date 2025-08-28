@@ -31,7 +31,7 @@ function NewPost(props) {
         <label htmlFor="author">Your Name</label>
         <input
           type="text"
-          id="name"
+          id="author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           required
@@ -43,6 +43,7 @@ function NewPost(props) {
           onClick={() => {
             setBody("");
             setAuthor("");
+            props.onCancel?.();
           }}
         >
           Cancel

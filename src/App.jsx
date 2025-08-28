@@ -1,18 +1,23 @@
-import PostList from "./components/PostsList.jsx/";
-import Post from "./components/Post.jsx";
-import NewPost from "./components/NewPost.jsx";
+import PostList from "./components/PostsList";
+import MainHeader from "./components/MainHeader";
+import { useState } from "react";
 function App() {
-  function changeHandler(event) {
-    setEnterBody(event.target.value);
+  const [modalIsVisible, setModalIsVisible] = useState(true);
+  function showModalHandler() {
+    setModalIsVisible(true);
+  }
+
+  function hideModalHandler() {
+    setModalIsVisible(false);
   }
   return (
-    <main>
-
-      <PostList>
-        <Post author="Vert" body="Hello World" />
-        <Post author="San" body="Hello React" />
-      </PostList>
-    </main>
+    <>
+      <MainHeader onCreatePost={showModalHandler} />
+      <main>
+        <PostList isPosting={modalIsVisible} onStopPosting={hideModalHandler} />
+      </main>
+    </>
   );
 }
+
 export default App;
